@@ -3,6 +3,60 @@
 /* ========== NAV ========== */
 /* ========== INPUT ========== */
 /* ========== BUTTON ========== */
+/* ========== SECTION ========== */
+.section__title {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+}
 /* ========== HERO ========== */
 /* ========== CARD ========== */
+.card-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+.card {
+  width: 18rem;
+  border: 3px solid black;
+  border-radius: var(--spacing-lg);
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateX(-0.5rem) translateY(-0.5rem);
+  box-shadow: 1rem 1rem 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card-face {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.card__img-wrap {
+  text-align: center;
+}
+
+.card__img {
+  border-radius: var(--spacing);
+  max-height: 20rem;
+}
+
+.card__info {
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: var(--spacing);
+}
+
+.card__info h3 {
+  max-height: 4rem;
+}
+
+/* .card:hover .card-front {
+  transform: rotateY(180deg);
+} */
 /* ========== FOOTER ========== */
