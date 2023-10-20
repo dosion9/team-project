@@ -1,12 +1,13 @@
 import { api } from "./tmdb.js";
 
-const $topRatedArea = document.querySelector("#top__rated");
+const $popularArea = document.querySelector("#popular-movie");
 const $searchInput = document.querySelector("#search__input");
 const $searchBtn = document.querySelector("#search__btn");
+const $sortBtnArea = document.querySelector("#popular-sort");
 
-api.data.topRated.then((res) => {
+api.data.popular.then((res) => {
   // console.log(res);
-  return createCard($topRatedArea, res);
+  return createCard($popularArea, res);
 });
 
 const createCard = async function (parentEl, arr) {
@@ -22,7 +23,7 @@ const createCard = async function (parentEl, arr) {
 const createCardLayout = (obj) => {
   const imgUrl = `https://image.tmdb.org/t/p/original${obj.poster_path}`;
   const tem = `
-    <div class="card" data-id="${obj.id}" data-rating=>
+    <div class="card" data-id="${obj.id}">
             <div class="card__face card__face-front">
                 <img src="${imgUrl}" alt="${obj.title} 포스터" class="card__img" />
               <div class="card__info">
@@ -50,24 +51,6 @@ const searchCard = function (arr, val, parentEl) {
   });
 };
 
-const sortCard = function (arr, parentEl, type = "default") {
-  arr.then((data) => {
-    const byRating = [...data].sort((a, b) => b.vote_average - a.vote_average);
-    parentEl.innerHTML = null;
-
-    switch (type) {
-      case "rating":
-        createCard($topRatedArea, byRating);
-        break;
-      default:
-        createCard($topRatedArea, data);
-    }
-  });
-};
-
-// sortCard(api.data.topRated, $topRatedArea, "rating");
-// sortCard(api.data.topRated, $topRatedArea);
-
 const checkInclude = (prop, val) => {
   const condition = {
     ko: prop.title.includes(val),
@@ -77,6 +60,24 @@ const checkInclude = (prop, val) => {
   return condition.ko || condition.en;
 };
 
+const sortCard = function (arr, parentEl, type = "default") {
+  arr.then((data) => {
+    const byRating = [...data].sort((a, b) => b.vote_average - a.vote_average);
+    parentEl.innerHTML = null;
+
+    switch (type) {
+      case "rating":
+        createCard($popularArea, byRating);
+        break;
+      default:
+        createCard($popularArea, data);
+    }
+  });
+};
+
+// sortCard(api.data.popular, $popularArea, "rating");
+// sortCard(api.data.popular, $popularArea);
+
 // ========== EVENT ==========
 
 onload = () => {
@@ -85,16 +86,28 @@ onload = () => {
 
 window.addEventListener("keydown", async (e) => {
   if ($searchInput != false && e.key === "Enter") {
-    searchCard(await api.data.topRated, $searchInput.value, $topRatedArea);
+    searchCard(await api.data.popular, $searchInput.value, $popularArea);
   }
 });
 
 $searchInput.addEventListener("input", async (e) => {
   if (e.target.value == false) {
-    searchCard(await api.data.topRated, $searchInput.value, $topRatedArea);
+    searchCard(await api.data.popular, $searchInput.value, $popularArea);
   }
 });
 
 $searchBtn.addEventListener("click", async () => {
-  searchCard(await api.data.topRated, $searchInput.value, $topRatedArea);
+  searchCard(await api.data.popular, $searchInput.value, $popularArea);
+});
+
+$sortBtnArea.addEventListener("click", function (e) {
+  for (let i = 0; i < this.children.length; i++) {
+    this.children[i].classList.remove("btn-outline-active");
+  }
+  e.target.classList.add("btn-outline-active");
+  sortCard(api.data.popular, $popularArea, e.target.dataset.sort);
+
+  // recommendBtn.classList.remove("btn-outline-active");
+  // ratingBtn.classList.remove("btn-outline-active");
+  // sortCard(api.data.popular,$popularArea)
 });

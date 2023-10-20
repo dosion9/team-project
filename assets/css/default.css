@@ -36,7 +36,6 @@ li {
   max-width: 1200px;
   width: 80%;
   margin: auto;
-  padding: var(--spacing) 0;
 }
 
 .row {

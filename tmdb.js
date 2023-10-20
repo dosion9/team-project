@@ -9,7 +9,7 @@ const options = {
 
 const api = {
   url: {
-    topRated:
+    popular:
       "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1&region=KR",
   },
   data: {},

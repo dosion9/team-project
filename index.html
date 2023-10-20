@@ -9,7 +9,8 @@
   <body>
     <header class="header">
       <div class="container row">
-        <nav>헤더입니다</nav>
+        <nav></nav>
+        헤더입니다
       </div>
     </header>
     <main>
@@ -23,10 +24,21 @@
           </button>
         </div>
       </div>
-      <!-- TOP Rated -->
+      <!-- Popular -->
       <section class="container">
-        <h3 class="section__title">TOP Rated</h3>
-        <div class="card-group" id="top__rated" data-sort="default">
+        <div class="section__header">
+          <h2 class="section__title">Popular</h2>
+          <div class="btn-group" id="popular-sort">
+            <button
+              class="btn btn-outline btn-outline-active"
+              data-sort="default"
+            >
+              추천순
+            </button>
+            <button class="btn btn-outline" data-sort="rating">평점순</button>
+          </div>
+        </div>
+        <div class="card-group" id="popular-movie">
           <!--     <div class="card" data-id="${prop.id}">
             <div class="card-face card-front">
                 <img src="${posterImg}" alt="${prop.title} 포스터" class="card__img" />
