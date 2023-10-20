@@ -42,19 +42,35 @@ const createCardLayout = (obj) => {
 };
 
 const searchCard = function (arr, val, parentEl) {
-  arr.forEach((prop, n) => {
-    if (checkInclude(prop, val)) {
-      parentEl.children[n].style.display = "block";
+  // 배열 그대로 가져다 만든 추천순 cardList에선 작동하지만
+  // 배열이 변경된 평점순에선 제대로 동작하지 않는다.
+  // arr.forEach((prop, n) => {
+  //   if (checkInclude(prop, val)) {
+  //     parentEl.children[n].style.display = "block";
+  //   } else {
+  //     parentEl.children[n].style.display = "none";
+  //   }
+  // });
+
+  const result = arr.filter((n) => checkInclude(n, val));
+
+  for (let i = 0; i < parentEl.children.length; i++) {
+    const id = parentEl.children[i].dataset.id;
+    const index = result.findIndex((n) => {
+      return n.id == id;
+    });
+    if (index !== -1) {
+      parentEl.children[i].style.display = "block";
     } else {
-      parentEl.children[n].style.display = "none";
+      parentEl.children[i].style.display = "none";
     }
-  });
+  }
 };
 
-const checkInclude = (prop, val) => {
+const checkInclude = (obj, val) => {
   const condition = {
-    ko: prop.title.includes(val),
-    en: prop.original_title.toLowerCase().includes(val.toLowerCase()),
+    ko: obj.title.includes(val),
+    en: obj.original_title.toLowerCase().includes(val.toLowerCase()),
   };
 
   return condition.ko || condition.en;
@@ -75,9 +91,6 @@ const sortCard = function (arr, parentEl, type = "default") {
   });
 };
 
-// sortCard(api.data.popular, $popularArea, "rating");
-// sortCard(api.data.popular, $popularArea);
-
 // ========== EVENT ==========
 
 onload = () => {
@@ -91,7 +104,7 @@ window.addEventListener("keydown", async (e) => {
 });
 
 $searchInput.addEventListener("input", async (e) => {
-  if (e.target.value == false) {
+  if (e.target.value === "") {
     searchCard(await api.data.popular, $searchInput.value, $popularArea);
   }
 });
