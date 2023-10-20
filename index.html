@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,10 +8,11 @@
   </head>
   <body>
     <header class="header">
-      <div class="container row">
-        <nav></nav>
-        헤더입니다
-      </div>
+      <nav class="nav container">
+        <a href="/" class="nav__item">
+          <img src="./assets/svg/logo.svg" alt="Doflix" class="logo" />
+        </a>
+      </nav>
     </header>
     <main>
       <!-- HERO -->
@@ -27,7 +28,7 @@
       <!-- Popular -->
       <section class="container">
         <div class="section__header">
-          <h2 class="section__title">Popular</h2>
+          <h2 class="section__title">인기 영화</h2>
           <div class="btn-group" id="popular-sort">
             <button
               class="btn btn-outline btn-outline-active"
@@ -55,8 +56,24 @@
         </div>
       </section>
     </main>
-    <footer>
-      <section class="container"></section>
+    <footer class="footer">
+      <section class="container">
+        <div class="row">
+          <a href="https://developer.themoviedb.org/docs" target="_blank">
+            <img
+              src="https://files.readme.io/29c6fee-blue_short.svg"
+              alt="The Movie Database (TMDB)"
+              class="logo"
+            />
+          </a>
+        </div>
+        <div class="row">
+          <p>
+            이 페이지는 TMDB API를 사용하지만 TMDB의 승인이나 인증을
+            받지않았습니다.
+          </p>
+        </div>
+      </section>
     </footer>
     <script type="module" src="./index.js"></script>
   </body>

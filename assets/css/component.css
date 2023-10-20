@@ -1,7 +1,19 @@
 /* ========== HEADER ========== */
-header {
+.header {
   position: absolute;
   width: 100%;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.logo {
+  height: 24px;
 }
 /* ========== NAV ========== */
 /* ========== INPUT ========== */
@@ -23,6 +35,7 @@ header {
 
 .input:hover,
 .input:focus {
+  border: 2px solid hsla(0, 0%, 100%);
   box-shadow: 0 0 0.5rem 0.5rem hsla(0, 0%, 100%, 0.5);
 }
 
@@ -149,7 +162,7 @@ header {
   padding: var(--spacing-lg);
 }
 
-.card__info h3 {
+.card__title {
   min-height: 4rem;
 }
 
@@ -162,7 +175,18 @@ header {
   transform: rotateY(0deg);
 }
 
-/* .card:hover .card-front {
-  transform: rotateY(180deg);
-} */
 /* ========== FOOTER ========== */
+.footer {
+  border-top: 5px solid var(--color-main);
+  margin-top: 3rem;
+  padding: 4rem 0;
+}
+
+.footer .row {
+  margin-bottom: 2em;
+}
+.footer .row:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== ETC ========== */

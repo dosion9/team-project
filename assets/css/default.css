@@ -4,8 +4,9 @@
 :root {
   --spacing: 0.5em;
   --spacing-lg: 1em;
-  --color-main: hsl(357, 92%, 47%);
+  --color-main: rgb(230, 10, 21);
   --color-dark: hsl(357, 84%, 41%);
+  --logo-height: 1.5rem;
 }
 
 /* ========== RESET ========== */
@@ -29,6 +30,10 @@ a:active {
 
 li {
   list-style-type: none;
+}
+
+input {
+  outline: none;
 }
 
 /* ========== LAYOUT ========== */
