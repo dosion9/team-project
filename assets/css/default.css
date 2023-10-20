@@ -2,8 +2,11 @@
 
 /* ========== VARIABLES ========== */
 :root {
-  --spacing: 0.5rem;
-  --spacing-lg: 1rem;
+  --spacing: 0.5em;
+  --spacing-lg: 1em;
+  --color-main: rgb(230, 10, 21);
+  --color-dark: hsl(357, 84%, 41%);
+  --logo-height: 1.5rem;
 }
 
 /* ========== RESET ========== */
@@ -11,6 +14,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
 }
 
 a,
@@ -24,12 +32,15 @@ li {
   list-style-type: none;
 }
 
+input {
+  outline: none;
+}
+
 /* ========== LAYOUT ========== */
 .container {
   max-width: 1200px;
   width: 80%;
   margin: auto;
-  padding: var(--spacing) 0;
 }
 
 .row {

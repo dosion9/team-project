@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,25 +8,77 @@
   </head>
   <body>
     <header class="header">
-      <section class="container"></section>
+      <nav class="nav container">
+        <a href="/" class="nav__item">
+          <img src="./assets/svg/logo.svg" alt="Doflix" class="logo" />
+        </a>
+      </nav>
     </header>
     <main>
       <!-- HERO -->
+
+      <div class="hero">
+        <div class="container row">
+          <input
+            type="text"
+            class="input input-lg"
+            id="search__input"
+            placeholder="입력 후 Enter 나 검색버튼을 누르세요. (한/영 가능)"
+          />
+          <button type="button" class="btn btn-lg btn-red" id="search__btn">
+            검색
+          </button>
+        </div>
+      </div>
+      <!-- Popular -->
       <section class="container">
-        <div class="hero"></div>
-      </section>
-      <!-- 카드리스트 -->
-      <section class="container">
-        <ul>
-          <li>a</li>
-          <li>a</li>
-          <li>a</li>
-        </ul>
-        <a href="">asdasdsd</a>
+        <div class="section__header">
+          <h2 class="section__title">인기 영화</h2>
+          <div class="btn-group" id="popular-sort">
+            <button
+              class="btn btn-outline btn-outline-active"
+              data-sort="default"
+            >
+              추천순
+            </button>
+            <button class="btn btn-outline" data-sort="rating">평점순</button>
+          </div>
+        </div>
+        <div class="card-group" id="popular-movie">
+          <!--     <div class="card" data-id="${prop.id}">
+            <div class="card-face card-front">
+                <img src="${posterImg}" alt="${prop.title} 포스터" class="card__img" />
+              <div class="card__info">
+              <h3 class="card__title">${prop.title}</h3>
+              <p>평점 : ${prop.vote_average}</p>
+              </div>
+            </div>
+            <div class="card-face card-back" style="display:none">
+              <h5 class="card__title">${prop.title}</h5>
+              <p>${prop.overview}</p>
+            </div>
+          </div>-->
+        </div>
       </section>
     </main>
-    <footer>
-      <section class="container"></section>
+    <footer class="footer line-top">
+      <section class="container">
+        <div class="row">
+          <a href="https://developer.themoviedb.org/docs" target="_blank">
+            <img
+              src="https://files.readme.io/29c6fee-blue_short.svg"
+              alt="The Movie Database (TMDB)"
+              class="logo"
+            />
+          </a>
+        </div>
+        <div class="row">
+          <p>
+            이 페이지는 TMDB API를 사용하지만 TMDB의 승인이나 인증을
+            받지않았습니다.
+          </p>
+        </div>
+      </section>
     </footer>
     <script type="module" src="./index.js"></script>
   </body>

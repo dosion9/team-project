@@ -1,8 +1,194 @@
 /* ========== HEADER ========== */
+.header {
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1;
+}
 
+.nav {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.logo {
+  height: 24px;
+}
 /* ========== NAV ========== */
 /* ========== INPUT ========== */
+.input {
+  transition: 0.3s;
+  border-radius: var(--spacing);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+
+.input-lg {
+  width: 100%;
+  max-width: 40rem;
+  font-size: 1.5rem;
+  height: 3.5rem;
+  padding: 0 1rem;
+}
+
+.input:hover,
+.input:focus {
+  border: 2px solid hsla(0, 0%, 100%);
+  box-shadow: 0 0 0.5rem 0.5rem hsla(0, 0%, 100%, 0.5);
+}
+
+#search__input {
+  margin-right: 1rem;
+}
+
 /* ========== BUTTON ========== */
+.btn {
+  border: none;
+  border-radius: var(--spacing);
+  cursor: pointer;
+  transition: 0.3s;
+  line-height: 1;
+  padding: 0.5em 1em;
+  font-weight: bold;
+}
+
+.btn-outline {
+  color: white;
+  background-color: transparent;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+}
+
+.btn-lg {
+  font-size: 1.5rem;
+  min-height: 3.5rem;
+}
+
+.btn-red {
+  background-color: var(--color-main);
+  color: white;
+}
+
+.btn-outline:hover,
+.btn-outline-active {
+  border: 2px solid var(--color-dark);
+  background-color: var(--color-dark);
+}
+
+.btn-red:hover {
+  background-color: var(--color-dark);
+}
+
+.btn-group .btn {
+  margin-right: 0.5rem;
+}
+/* ========== SECTION ========== */
+
+.section__header {
+  display: flex;
+  padding: 2rem 0;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.section__title {
+  text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.5);
+  font-size: 2.5rem;
+}
 /* ========== HERO ========== */
+.hero {
+  position: relative;
+  height: 30rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/7ef99d1d-dde9-40aa-b222-d33a2f0832ef/KR-ko-20231016-popsignuptwoweeks-perspective_alpha_website_large.jpg);
+  background-position: center;
+  background-size: cover;
+  filter: brightness(50%);
+  z-index: -1;
+}
+
+.hero > .container {
+  height: 100%;
+  align-items: center;
+}
 /* ========== CARD ========== */
+.card-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+.card {
+  width: 18rem;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card__face {
+  width: 100%;
+  transition: 0.3s;
+  border: 1px solid white;
+  border-radius: var(--spacing-lg);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.card__face-back {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding: var(--spacing-lg);
+  transform: rotateY(-180deg);
+}
+
+.card__img {
+  border-radius: var(--spacing);
+  max-height: 27rem;
+}
+
+.card__info {
+  width: 100%;
+  padding: var(--spacing-lg);
+}
+
+.card__title {
+  min-height: 4rem;
+}
+
+/* hover */
+.card:hover .card__face-front {
+  transform: rotateY(180deg);
+}
+
+.card:hover .card__face-back {
+  transform: rotateY(0deg);
+}
+
 /* ========== FOOTER ========== */
+.footer {
+  margin-top: 3rem;
+  padding: 4rem 0;
+}
+
+.footer .row {
+  margin-bottom: 2em;
+}
+.footer .row:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== ETC ========== */
+.line-top {
+  border-top: 5px solid var(--color-main);
+}
