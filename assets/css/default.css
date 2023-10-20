@@ -2,8 +2,9 @@
 
 /* ========== VARIABLES ========== */
 :root {
-  --spacing: 0.5rem;
-  --spacing-lg: 1rem;
+  --spacing: 0.5em;
+  --spacing-lg: 1em;
+  --color-main: hsl(357, 92%, 47%);
 }
 
 /* ========== RESET ========== */
@@ -11,6 +12,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
 }
 
 a,

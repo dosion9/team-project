@@ -8,16 +8,21 @@
   </head>
   <body>
     <header class="header">
-      <section class="container"></section>
+      <div class="container row">
+        <nav>헤더입니다</nav>
+      </div>
     </header>
     <main>
       <!-- HERO -->
-      <section class="container">
-        <div class="hero">
-          <input type="text" id="search__input" />
-          <input type="button" id="search__btn" value="확인" />
+
+      <div class="hero">
+        <div class="container row">
+          <input type="text" class="input input-lg" id="search__input" />
+          <button type="button" class="btn btn-lg btn-red" id="search__btn">
+            검색하기
+          </button>
         </div>
-      </section>
+      </div>
       <!-- TOP Rated -->
       <section class="container">
         <h3 class="section__title">TOP Rated</h3>
@@ -30,7 +35,7 @@
               <p>평점 : ${prop.vote_average}</p>
               </div>
             </div>
-            <div class="card-face card__back" style="display:none">
+            <div class="card-face card-back" style="display:none">
               <h5 class="card__title">${prop.title}</h5>
               <p>${prop.overview}</p>
             </div>
