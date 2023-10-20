@@ -5,6 +5,7 @@
   --spacing: 0.5em;
   --spacing-lg: 1em;
   --color-main: hsl(357, 92%, 47%);
+  --color-dark: hsl(357, 84%, 41%);
 }
 
 /* ========== RESET ========== */
