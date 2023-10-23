@@ -132,6 +132,11 @@
   position: relative;
   cursor: pointer;
   transition: 0.3s;
+  display: none;
+}
+
+.card-active {
+  display: block;
 }
 
 .card__face {
