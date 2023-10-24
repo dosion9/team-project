@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./style/style.css" />
     <title>DoFlix</title>
   </head>
   <body>
@@ -25,9 +25,7 @@
             id="search__input"
             placeholder="입력 후 Enter 나 검색버튼을 누르세요. (한/영 가능)"
           />
-          <button type="button" class="btn btn-lg btn-red" id="search__btn">
-            검색
-          </button>
+          <button type="button" class="btn btn-lg btn-red" id="search__btn">검색</button>
         </div>
       </div>
       <!-- Popular -->
@@ -35,12 +33,7 @@
         <div class="section__header">
           <h2 class="section__title">인기 영화</h2>
           <div class="btn-group" id="popular-sort">
-            <button
-              class="btn btn-outline btn-outline-active"
-              data-sort="default"
-            >
-              추천순
-            </button>
+            <button class="btn btn-outline btn-outline-active" data-sort="default">추천순</button>
             <button class="btn btn-outline" data-sort="rating">평점순</button>
           </div>
         </div>
@@ -51,21 +44,17 @@
       <section class="container">
         <div class="row">
           <a href="https://developer.themoviedb.org/docs" target="_blank">
-            <img
-              src="https://files.readme.io/29c6fee-blue_short.svg"
-              alt="The Movie Database (TMDB)"
-              class="logo"
-            />
+            <img src="https://files.readme.io/29c6fee-blue_short.svg" alt="The Movie Database (TMDB)" class="logo" />
           </a>
         </div>
         <div class="row">
           <p>
-            본 프로젝트는 TMDB API를 활용하고 있으나, 이는 TMDB로부터 공식적으로
-            승인되거나 인증받은 것이 아님을 밝힙니다.
+            본 프로젝트는 TMDB API를 활용하고 있으나, 이는 TMDB로부터 공식적으로 승인되거나 인증받은 것이 아님을
+            밝힙니다.
           </p>
         </div>
       </section>
     </footer>
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

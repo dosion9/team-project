@@ -5,11 +5,11 @@ const popularMovieData = {
   default: movieData.popular,
   rating: [...movieData.popular].sort((a, b) => {
     return b?.vote_average - a?.vote_average;
-  }),
+  })
 };
 const popularMovieInstance = {
   default: [],
-  rating: [],
+  rating: []
 };
 
 const $cardArea = document.querySelector("#popular-movie");
@@ -34,9 +34,7 @@ class MovieCard {
 
   addEvent() {
     this.el.addEventListener("click", () => {
-      alert(
-        `제목 : ${this.title}\n원제 : ${this.original_title}\nID코드 : ${this.id}`
-      );
+      alert(`제목 : ${this.title}\n원제 : ${this.original_title}\nID코드 : ${this.id}`);
     });
   }
 
