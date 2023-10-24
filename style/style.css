@@ -1,9 +1,10 @@
 /* 
 ========== STYLESHEET ==========
+  > RESET.CSS
+  
   > DEFAULT.CSS
     > typography
     > variables
-    > reset
     > layout
 
   > COMPONENT.CSS
@@ -12,6 +13,6 @@
     
 ================================
 */
-
+@import "./reset.css";
 @import "./default.css";
 @import "./component.css";
