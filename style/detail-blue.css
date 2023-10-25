@@ -1,1 +1,18 @@
 /* detail 페이지 파란 부분 */
+.container__cast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  border-top: 2px solid white;
+  padding-top: 15px;
+}
+.container__detail {
+  display: flex;
+}
+.movie_detail__cast {
+  text-align: center;
+  margin: 5px;
+}
+.movie_detail__cast img {
+  border-radius: 10px;
+}
