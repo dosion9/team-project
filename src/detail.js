@@ -2,7 +2,7 @@
 
 const $dataContainer = document.querySelector(".container__detail");
 const $castContainer = document.querySelector(".container__cast");
-let movieId = 51608; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
+let movieId = 926393; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
 const url = `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits&language=ko-ko`;
 
 const options = {
@@ -40,8 +40,8 @@ async function getData(url) {
 
 //movie detail 카드를 생성하는 함수
 function createMovieDetail(movieData) {
-  const card = document.createElement("div");
-  card.classList.add("movie_detail__detail");
+  //   const card = document.createElement("div");
+  //   card.classList.add("movie_detail__detail");
 
   //카드에 들어갈 요소들 정의
   const poster = document.createElement("img");
@@ -49,26 +49,25 @@ function createMovieDetail(movieData) {
 
   const title = document.createElement("h3");
   title.textContent = movieData.title;
+  title.classList.add("detail__title");
 
   const overview = document.createElement("p");
   overview.textContent = movieData.overview;
+  overview.classList.add("detail__overview");
 
   const releaseDate = document.createElement("p");
   releaseDate.textContent = movieData.release_date;
   //위에서 정의한 요소들 카드에 추가
-  card.appendChild(poster);
-  card.appendChild(title);
-  card.appendChild(overview);
-  card.appendChild(releaseDate);
-
-  return card;
+  $dataContainer.appendChild(poster);
+  $dataContainer.appendChild(title);
+  $dataContainer.appendChild(overview);
+  $dataContainer.appendChild(releaseDate);
 }
 //생성한 디테일을 화면에 뿌리는 함수
 function renderCard(movieData) {
   const cast = movieData.credits.cast;
   console.log(cast);
-  const card = createMovieDetail(movieData);
-  $dataContainer.appendChild(card);
+  createMovieDetail(movieData);
 
   for (let i = 0; i < 5; i++) {
     const castCard = createCastCard(cast[i]);
@@ -101,3 +100,7 @@ function createCastCard(castData) {
 //     .catch(err => console.error(err));
 
 //배우 이름은 영어로 검색하되, 언어설정은 한국어로 해주면 된다. 근데 한국어로 검색해도 original name이 영어인게 낭패네
+
+// function searchUrlParam(key) {
+//     return new URLSearchParams(window.location.search).get(key);
+//     }

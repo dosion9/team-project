@@ -6,13 +6,21 @@
   border-top: 2px solid white;
   padding-top: 15px;
 }
-.container__detail {
-  display: flex;
-}
+
 .movie_detail__cast {
   text-align: center;
   margin: 5px;
 }
 .movie_detail__cast img {
   border-radius: 10px;
+  float: left;
+}
+
+.container__detail {
+  display: grid;
+  grid-template-areas:
+    "poster title"
+    "poster synop"
+    "poster release-date"
+    "poster none";
 }
