@@ -4,6 +4,7 @@
   justify-content: space-around;
   margin-top: 15px;
   border-top: 2px solid white;
+
   padding-top: 15px;
 }
 
@@ -14,11 +15,11 @@
 .movie_detail__cast img {
   border-radius: 10px;
   float: left;
+  width: 200px;
 }
 
 .container__detail {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
 
   padding-top: 20px;
 }
@@ -28,14 +29,14 @@
 }
 
 .movie_detail__detail {
-  /* grid-template-rows: 1fr 2fr 1fr; */
-  /* display: grid;
-  padding: 10px;
-  margin: 10px;
-  font-size: larger; */
+  margin-left: 20px;
 }
 
 .movie_detail__detail * {
   padding-bottom: 30px;
   padding-left: 15px;
+}
+.movie_detail__synopsis {
+  margin-top: 15px;
+  line-height: 2em;
 }

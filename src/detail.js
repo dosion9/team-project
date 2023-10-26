@@ -2,8 +2,14 @@
 
 const $dataContainer = document.querySelector(".container__detail");
 const $castContainer = document.querySelector(".container__cast");
-let movieId = 916224; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
-const url = `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits&language=ko-ko`;
+let movieId = 238; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
+
+function searchParam(key) {
+  return new URLSearchParams(location.search).get(key);
+}
+const receivedMovieId = searchParam("id");
+
+const url = `https://api.themoviedb.org/3/movie/${receivedMovieId}?append_to_response=credits&language=ko-ko`;
 
 const options = {
   method: "GET",
@@ -17,12 +23,6 @@ const options = {
 async function initialize() {
   let movieData = await getData(url);
   console.log(movieData);
-  console.log(movieData.overview);
-  const movTitle = movieData.title;
-  const movOverview = movieData.overview;
-  console.log(movTitle);
-  console.log(movOverview);
-  console.log(movieData.credits.cast[0].name);
   renderCard(movieData);
 }
 initialize();
@@ -31,7 +31,6 @@ async function getData(url) {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -48,6 +47,8 @@ function createMovieDetail(movieData) {
       return el.name;
     })
     .toString();
+  const synopDiv = document.createElement("div");
+  synopDiv.classList.add("movie_detail__synopsis");
 
   //카드에 들어갈 요소들 정의
   const poster = document.createElement("img");
@@ -81,17 +82,17 @@ function createMovieDetail(movieData) {
   //위에서 정의한 요소들 카드에 추가
   $dataContainer.appendChild(poster);
   detailCard.appendChild(title);
-  detailCard.appendChild(overview);
   detailCard.appendChild(genres);
   detailCard.appendChild(runtime);
   detailCard.appendChild(vote);
   detailCard.appendChild(releaseDate);
   $dataContainer.appendChild(detailCard);
+  synopDiv.appendChild(overview);
+  $dataContainer.after(synopDiv);
 }
 //생성한 디테일을 화면에 뿌리는 함수
 function renderCard(movieData) {
   const cast = movieData.credits.cast;
-  console.log(cast);
   createMovieDetail(movieData);
 
   for (let i = 0; i < 5; i++) {
@@ -107,7 +108,7 @@ function createCastCard(castData) {
 
   //카드에 들어갈 요소들 정의
   const profile = document.createElement("img");
-  profile.setAttribute("src", `https://image.tmdb.org/t/p/w200${castData.profile_path}`);
+  profile.setAttribute("src", `https://image.tmdb.org/t/p/original${castData.profile_path}`);
 
   const name = document.createElement("p");
   name.textContent = castData.original_name;
