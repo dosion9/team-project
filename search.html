@@ -3,7 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>DoFlix</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <nav class="nav container">
+        <a href="./" class="nav__item">
+          <img src="./assets/svg/logo.svg" alt="Doflix" class="logo" />
+        </a>
+        <!-- 임시 Nav -->
+        <ul class="row">
+          <li><a href="./detail.html">Detail</a></li>
+          <li><a href="./search.html">Search</a></li>
+        </ul>
+        <!-- 임시 Nav -->
+      </nav>
+    </header>
+    <main>
+      <!-- 검색기능이 있는 HERO 입니다. -->
+      <!-- ==================== 초록색 부분 시작 ==================== -->
+      <div class="hero">
+        <div class="container row">
+          <input
+            type="text"
+            class="input input-lg"
+            id="search__input"
+            placeholder="입력 후 Enter 나 검색버튼을 누르세요. (한/영 가능)"
+          />
+          <button type="button" class="btn btn-lg btn-red" id="search__btn">검색</button>
+        </div>
+      </div>
+      <!-- ==================== 초록색 부분 끝 ==================== -->
+      <!-- Popular -->
+      <section class="container">
+        <div class="section__header">
+          <h2 class="section__title">검색 결과</h2>
+          <div class="btn-group" id="popular-sort">
+            <button class="btn btn-outline btn-outline-active" data-sort="default">추천순</button>
+            <button class="btn btn-outline" data-sort="rating">평점순</button>
+          </div>
+        </div>
+        <div class="card-group" id="popular-movie">
+          <!-- d -->
+        </div>
+      </section>
+    </main>
+    <footer class="footer line-top">
+      <section class="container">
+        <div class="row">
+          <a href="https://developer.themoviedb.org/docs" target="_blank">
+            <img src="https://files.readme.io/29c6fee-blue_short.svg" alt="The Movie Database (TMDB)" class="logo" />
+          </a>
+        </div>
+        <div class="row">
+          <p>
+            본 프로젝트는 TMDB API를 활용하고 있으나, 이는 TMDB로부터 공식적으로 승인되거나 인증받은 것이 아님을
+            밝힙니다.
+          </p>
+        </div>
+      </section>
+    </footer>
+    <!-- <script type="module" src="./src/main.js"></script> -->
+    <script type="module" src="./src/searchResult.js"></script>
+  </body>
 </html>
