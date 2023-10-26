@@ -6,7 +6,7 @@ const $searchBtn = document.querySelector("#search__btn");
 const $searchInput = document.querySelector("#search__input");
 
 // 욕설 정규표현식
-const filter1 = new RegExp(/(썅|씹|씨발|등신|머저리|똥개|연병)/g);
+const filter1 = new RegExp(/(썅|씹|씨발|등신|머저리|똥개|연병)/ig);
     
 // 검색어 입력 후 검색 버튼 클릭 시
 $searchBtn.addEventListener("click", () => {
@@ -15,18 +15,15 @@ $searchBtn.addEventListener("click", () => {
     const result2 = filtering2(filter1, $searchInput.value)
     
     // 각 filtering 결과에 따라 다르게 메시지 출력
-    let message = ''
     if(result1 === true && result2 === true) {
-        message += '검색어를 공백없이 2글자 이상으로 입력해주세요. 그리고 욕설은 입력하지 말아주세요.'
+        alert('검색어를 공백없이 2글자 이상으로 입력해주세요. 그리고 욕설은 입력하지 말아주세요.')
     } else if(result1 === true && result2 !== true) {
-        message += '검색어를 공백없이 2글자 이상으로 입력해주세요.'
+        alert('검색어를 공백없이 2글자 이상으로 입력해주세요.')
     } else if(result1 !== true && result2 === true) {
-        message += '욕설은 입력하지 말아주세요.'
+        alert('욕설은 입력하지 말아주세요.')
     } else if(result1 !== true && result2 !== true) {
-        //message += '입력하신 검색어로 검색하겠습니다.'
+        location.href = `./search.html?search=${$searchInput.value}`
     }
-
-    alert(message)
 });
   
 // 검색어 입력 후 enter 입력 시
@@ -38,18 +35,15 @@ window.addEventListener("keydown", (e) => {
         const result2 = filtering2(filter1, $searchInput.value)
         
         // 각 filtering 결과에 따라 다르게 메시지 출력
-        let message = ''
         if(result1 === true && result2 === true) {
-            message += '검색어를 공백없이 2글자 이상으로 입력해주세요. 그리고 욕설은 입력하지 말아주세요.'
+            alert('검색어를 공백없이 2글자 이상으로 입력해주세요. 그리고 욕설은 입력하지 말아주세요.')
         } else if(result1 === true && result2 !== true) {
-            message += '검색어를 공백없이 2글자 이상으로 입력해주세요.'
+            alert('검색어를 공백없이 2글자 이상으로 입력해주세요.')
         } else if(result1 !== true && result2 === true) {
-            message += '욕설은 입력하지 말아주세요.'
+            alert('욕설은 입력하지 말아주세요.')
         } else if(result1 !== true && result2 !== true) {
-            //message += '입력하신 검색어로 검색하겠습니다.'
+            location.href = `./search.html?search=${$searchInput.value}`
         }
-
-        alert(message)
     }
 });
 
@@ -76,6 +70,3 @@ function filtering2(filter, input) {
     console.log(typeof(filter.test(input))) // ....?
     return filter.test(input)
 }
-
-// // 마지막에 보내줄 링크
-// const link = `www.linnnnk.com?search=${$searchInput.value}`
