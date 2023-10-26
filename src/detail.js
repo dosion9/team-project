@@ -95,6 +95,15 @@ function createMovieDetail(movieData) {
   $dataContainer.appendChild(detailCard);
   synopDiv.appendChild(overview);
   $dataContainer.after(synopDiv);
+
+  //외국 영화의 경우 원어 제목을 표시해 주는 기능
+  if (movieData.original_language !== "ko") {
+    console.log(movieData.original_title);
+    const oriTitle = document.createElement("p");
+    oriTitle.textContent = `(${movieData.original_title})`;
+    oriTitle.classList.add("detail__original-title");
+    title.after(oriTitle);
+  }
 }
 //생성한 디테일을 화면에 뿌리는 함수
 function renderCard(movieData) {

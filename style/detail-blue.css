@@ -18,23 +18,14 @@
   width: 170px;
 }
 
-.container__detail {
-  display: flex;
-
-  padding-top: 20px;
-}
-
-.detail__title {
-  font-size: xx-large;
-}
-
 .movie_detail__detail {
   margin-left: 20px;
 }
 
 .movie_detail__detail * {
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   padding-left: 15px;
+  font-size: large;
 }
 .movie_detail__synopsis {
   margin-top: 15px;
@@ -42,4 +33,17 @@
 }
 .cast_name {
   line-height: 2em;
+}
+
+.container__detail {
+  display: flex;
+  padding-top: 20px;
+}
+
+.detail__title {
+  font-size: xx-large;
+  padding-bottom: 10px;
+}
+.detail__original-title {
+  font-size: x-large;
 }
