@@ -133,6 +133,7 @@ function createCastCard(castData) {
   //카드에 들어갈 요소들 정의
   const profile = document.createElement("img");
   profile.setAttribute("src", `https://image.tmdb.org/t/p/original${castData.profile_path}`);
+  profile.setAttribute("onerror", "this.onerror=null; this.src='../assets/img/noImg.jpg'");
 
   const name = document.createElement("p");
   name.textContent = castData.original_name;
