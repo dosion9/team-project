@@ -46,4 +46,5 @@
 }
 .detail__original-title {
   font-size: x-large;
+  min-height: 30px;
 }
