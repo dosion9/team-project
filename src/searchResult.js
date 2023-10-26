@@ -3,12 +3,12 @@ import { getMovieFromKofic, getMovieFromTmdb } from "./api.js";
 let currentPage = 1;
 
 // 임시 쿼리스트링
-const temporarySearch = ["search", "나쁜"];
-window.onload = function () {
-  if (searchUrlParam("search") === null) {
-    return (location.href = window.location.href + `?${temporarySearch[0]}=${temporarySearch[1]}`);
-  }
-};
+// const temporarySearch = ["search", "나쁜"];
+// window.onload = function () {
+//   if (searchUrlParam("search") === null) {
+//     return (location.href = window.location.href + `?${temporarySearch[0]}=${temporarySearch[1]}`);
+//   }
+// };
 // ================================================================
 // 본 코드
 async function fetchData(search) {
@@ -60,6 +60,7 @@ class MovieCard {
                             <div class="card__face card__face-front">
                                 <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" />
                               <div class="card__info">
+                              <h3 class="card__title">${this.title}</h3>
                               <h3 class="card__title">${this.title}</h3>
                               <p><b>평점</b> : ${this.vote_average.toFixed(2)}</p>
                               </div>
