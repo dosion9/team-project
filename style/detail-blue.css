@@ -14,8 +14,8 @@
 }
 .movie_detail__cast img {
   border-radius: 10px;
-  float: left;
-  width: 200px;
+
+  width: 170px;
 }
 
 .container__detail {
@@ -38,5 +38,8 @@
 }
 .movie_detail__synopsis {
   margin-top: 15px;
+  line-height: 2em;
+}
+.cast_name {
   line-height: 2em;
 }

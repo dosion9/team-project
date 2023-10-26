@@ -46,7 +46,8 @@ function createMovieDetail(movieData) {
     .map(function (el) {
       return el.name;
     })
-    .toString();
+    .toString()
+    .replaceAll(",", ", ");
   const synopDiv = document.createElement("div");
   synopDiv.classList.add("movie_detail__synopsis");
 
@@ -95,6 +96,7 @@ function renderCard(movieData) {
   const cast = movieData.credits.cast;
   createMovieDetail(movieData);
 
+  //주연급 배우만 5명(변경가능) 뽑습니다. 중요도순으로 정렬되어있습니다.
   for (let i = 0; i < 5; i++) {
     const castCard = createCastCard(cast[i]);
     $castContainer.appendChild(castCard);
@@ -112,6 +114,7 @@ function createCastCard(castData) {
 
   const name = document.createElement("p");
   name.textContent = castData.original_name;
+  name.classList.add("cast_name");
 
   //위에서 정의한 요소들 카드에 추가
   castCard.appendChild(profile);
@@ -119,14 +122,3 @@ function createCastCard(castData) {
 
   return castCard;
 }
-
-//   fetch('https://api.themoviedb.org/3/movie/51608?append_to_response=credits&language=ko-ko', options)
-//     .then(response => response.json())
-//     .then(response => console.log(response))
-//     .catch(err => console.error(err));
-
-//배우 이름은 영어로 검색하되, 언어설정은 한국어로 해주면 된다. 근데 한국어로 검색해도 original name이 영어인게 낭패네
-
-// function searchUrlParam(key) {
-//     return new URLSearchParams(window.location.search).get(key);
-//     }
