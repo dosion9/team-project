@@ -21,9 +21,14 @@ const options = {
 };
 
 async function initialize() {
-  let movieData = await getData(url);
-  console.log(movieData);
-  renderCard(movieData);
+  try {
+    let movieData = await getData(url);
+    console.log(movieData);
+    renderCard(movieData);
+  } catch (error) {
+    alert("뭔가 망했어요! 당신을 홈으로 강제송환 합니다");
+    window.location.href = "./";
+  }
 }
 initialize();
 
@@ -80,7 +85,7 @@ function createMovieDetail(movieData) {
   releaseDate.textContent = `개봉일자 : ${movieData.release_date}`;
   releaseDate.classList.add("detail__release-date");
 
-  //위에서 정의한 요소들 카드에 추가
+  //위에서 정의한 요소들 DOM에 추가
   $dataContainer.appendChild(poster);
   detailCard.appendChild(title);
   detailCard.appendChild(genres);
