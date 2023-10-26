@@ -114,10 +114,12 @@ function createMovieDetail(movieData) {
 //생성한 디테일을 화면에 뿌리는 함수
 function renderCard(movieData) {
   const cast = movieData.credits.cast;
+  console.log("CAST:", cast);
   createMovieDetail(movieData);
 
   //주연급 배우만 5명(변경가능) 뽑습니다. 중요도순으로 정렬되어있습니다.
-  for (let i = 0; i < 5; i++) {
+  const num = cast.length > 5 ? 5 : cast.length;
+  for (let i = 0; i < num; i++) {
     const castCard = createCastCard(cast[i]);
     $castContainer.appendChild(castCard);
   }
