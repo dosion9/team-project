@@ -18,9 +18,24 @@
 
 .container__detail {
   display: grid;
-  grid-template-areas:
-    "poster title"
-    "poster synop"
-    "poster release-date"
-    "poster none";
+  grid-template-columns: 1fr 2fr;
+
+  padding-top: 20px;
+}
+
+.detail__title {
+  font-size: xx-large;
+}
+
+.movie_detail__detail {
+  /* grid-template-rows: 1fr 2fr 1fr; */
+  /* display: grid;
+  padding: 10px;
+  margin: 10px;
+  font-size: larger; */
+}
+
+.movie_detail__detail * {
+  padding-bottom: 30px;
+  padding-left: 15px;
 }

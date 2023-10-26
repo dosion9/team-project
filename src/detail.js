@@ -2,7 +2,7 @@
 
 const $dataContainer = document.querySelector(".container__detail");
 const $castContainer = document.querySelector(".container__cast");
-let movieId = 926393; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
+let movieId = 916224; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
 const url = `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits&language=ko-ko`;
 
 const options = {
@@ -40,28 +40,53 @@ async function getData(url) {
 
 //movie detail 카드를 생성하는 함수
 function createMovieDetail(movieData) {
-  //   const card = document.createElement("div");
-  //   card.classList.add("movie_detail__detail");
+  const detailCard = document.createElement("div");
+  detailCard.classList.add("movie_detail__detail");
+  const movieGenre = movieData.genres;
+  const getGenre = movieGenre
+    .map(function (el) {
+      return el.name;
+    })
+    .toString();
 
   //카드에 들어갈 요소들 정의
   const poster = document.createElement("img");
   poster.setAttribute("src", `https://image.tmdb.org/t/p/w300${movieData.poster_path}`);
+  poster.classList.add("detail__poster");
 
   const title = document.createElement("h3");
   title.textContent = movieData.title;
   title.classList.add("detail__title");
 
   const overview = document.createElement("p");
-  overview.textContent = movieData.overview;
+  overview.textContent = `${movieData.overview}`;
   overview.classList.add("detail__overview");
 
+  const genres = document.createElement("p");
+  genres.textContent = `장르 : ${getGenre}`;
+  genres.classList.add("detail__genres");
+
+  const runtime = document.createElement("p");
+  runtime.textContent = `런타임 : ${movieData.runtime} 분`;
+  runtime.classList.add("detail__runtime");
+
+  const vote = document.createElement("p");
+  vote.textContent = `TMDB 평점 : ${movieData.vote_average} `;
+  vote.classList.add("detail__vote");
+
   const releaseDate = document.createElement("p");
-  releaseDate.textContent = movieData.release_date;
+  releaseDate.textContent = `개봉일자 : ${movieData.release_date}`;
+  releaseDate.classList.add("detail__release-date");
+
   //위에서 정의한 요소들 카드에 추가
   $dataContainer.appendChild(poster);
-  $dataContainer.appendChild(title);
-  $dataContainer.appendChild(overview);
-  $dataContainer.appendChild(releaseDate);
+  detailCard.appendChild(title);
+  detailCard.appendChild(overview);
+  detailCard.appendChild(genres);
+  detailCard.appendChild(runtime);
+  detailCard.appendChild(vote);
+  detailCard.appendChild(releaseDate);
+  $dataContainer.appendChild(detailCard);
 }
 //생성한 디테일을 화면에 뿌리는 함수
 function renderCard(movieData) {
