@@ -16,7 +16,7 @@ const tmdbOptions = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMWJmOTI2NzhmMjRkMmFlZWZmODRjMmJmNGQzMzI1MyIsInN1YiI6IjY1MmYyNDY2YTgwMjM2MDBjMzE2MDZjOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.v6FiZMMIYGmNHCWIP1tTb-1iIq22jWgA1RIijiBGVdw"
   }
 };
-
+//
 async function getMovieFromKofic(searchStr, pageNum = 1) {
   const params = new URLSearchParams(Object.entries({ ...koficApi.params, movieNm: searchStr, curPage: pageNum }));
   const url = `${koficApi.baseUrl}?${params.toString()}`;
@@ -34,10 +34,9 @@ async function getMovieFromKofic(searchStr, pageNum = 1) {
     console.error(err);
   }
 }
-// const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR`;
 
 async function getMovieFromTmdb(title, year) {
-  const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=ko-KR&page=1&region=KR`;
+  const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR`;
   try {
     const response = await fetch(url, tmdbOptions);
     const data = await response.json();
