@@ -42,7 +42,7 @@ function tmdbURL(obj) {
     upcoming: "/movie/upcoming?language=ko-KR&page=1&region=KR",
     popular: "/movie/popular?language=ko-KR&page=1&region=KR",
     search: `/search/movie?query=${obj.title}&include_adult=false&primary_release_year=${obj.year}&language=ko-KR&page=1&region=KR`,
-    details: `/${obj.movieId}?append_to_response=credits&language=ko-KR`
+    details: `/movie/${obj.movieId}?append_to_response=credits&language=ko-KR`
   };
 
   switch (obj.type) {
@@ -63,11 +63,13 @@ function tmdbURL(obj) {
 async function getMovieFromTmdb(obj) {
   // {obj.type, obj.title, obj.year, obj.movieId};
   // const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR`;
+
   const url = tmdbURL(obj);
   try {
     const response = await fetch(url, tmdbOptions);
     const data = await response.json();
-    return data.results;
+
+    return data?.results === undefined ? data : data.results;
   } catch (err) {
     console.error(err);
   }
