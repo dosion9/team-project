@@ -1,6 +1,4 @@
 // 영화 제목을 입력하고 옆에 버튼을 누르면
-//해당 내용을 쿼리스트링으로 붙여서 URL 보내주는 파일
-// 영화 제목을 입력하고 옆에 버튼을 누르면
 // 해당 내용을 쿼리스트링으로 붙여서 URL 보내주는 파일
 
 // 버튼, input, 검색어(input.value) 선언
@@ -8,7 +6,7 @@ const $searchBtn = document.querySelector("#search__btn");
 const $searchInput = document.querySelector("#search__input");
 
 // 욕설 정규표현식
-const filter1 = new RegExp(/(썅|씹|씨발|등신|머저리|똥개|연병)/ig);
+const filter1 = new RegExp(/(썅|씹|씨발|등신|머저리|똥개|염병|병신|씹새|개새|미친년|개년|씨발년|개새끼|씨발새끼|미친새끼|엠창|앰창|쒯|쓋|뻑|지랄)/ig);
     
 // 검색어 입력 후 검색 버튼 클릭 시
 $searchBtn.addEventListener("click", () => {
