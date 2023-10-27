@@ -40,7 +40,7 @@
         <div class="container__detail"></div>
         <div class="container__cast"></div>
         <!-- ==================== 영화 상세 정보 시작 ==================== -->
-        
+
         <!-- ==================== 영화 상세 정보 끝 ==================== -->
       </section>
 
@@ -51,14 +51,21 @@
           <h3>한줄평</h3>
           <p class="comment-number"></p>
         </div>
-          <form class="comment-form">
-          <input type="text" id="comment" name="comment" class="comment-area" value="" placeholder="한줄평을 등록해주세요." />
-          <button class="submit-btn-red" id="submit-btn">등록</button>
+        <form class="comment-form">
+          <input type="text" id="username" class="name-area" name="username" value="" placeholder="닉네임" />
+          <input type="password" id="password" class="password-area" placeholder="비밀번호" maxlength="6" />
+          <input
+            type="text"
+            id="comment"
+            name="comment"
+            class="comment-area"
+            value=""
+            placeholder="한줄평을 등록해주세요."
+          />
+          <button type="submit" id="submitBtn" class="submit-btn-red">등록</button>
         </form>
         <div class="comment-box">
-          <ul class="comment-list">
-            
-          </ul>
+          <ul class="comment-list"></ul>
         </div>
         <!-- ==================== 코멘트 기능 끝 ==================== -->
       </section>
