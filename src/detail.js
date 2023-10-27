@@ -2,7 +2,6 @@
 
 const $dataContainer = document.querySelector(".container__detail");
 const $castContainer = document.querySelector(".container__cast");
-let movieId = 238; // 이부분은 나중에 쿼리 스트링에서 따오는 값으로 동적으로 변경
 
 function searchParam(key) {
   return new URLSearchParams(location.search).get(key);
@@ -98,13 +97,12 @@ function createMovieDetail(movieData) {
 
   //외국 영화의 경우 원어 제목을 표시해 주는 기능
   if (movieData.original_language !== "ko") {
-    console.log(movieData.original_title);
     const oriTitle = document.createElement("p");
     oriTitle.textContent = `(${movieData.original_title})`;
     oriTitle.classList.add("detail__original-title");
     title.after(oriTitle);
   } else {
-    console.log(movieData.original_title);
+    // console.log(movieData.original_title);
     const oriTitle = document.createElement("p");
     oriTitle.textContent = ``;
     oriTitle.classList.add("detail__original-title");
@@ -114,10 +112,13 @@ function createMovieDetail(movieData) {
 //생성한 디테일을 화면에 뿌리는 함수
 function renderCard(movieData) {
   const cast = movieData.credits.cast;
+  // console.log("CAST:", cast);
   createMovieDetail(movieData);
+  changeTitle(movieData);
 
   //주연급 배우만 5명(변경가능) 뽑습니다. 중요도순으로 정렬되어있습니다.
-  for (let i = 0; i < 5; i++) {
+  const num = cast.length > 5 ? 5 : cast.length;
+  for (let i = 0; i < num; i++) {
     const castCard = createCastCard(cast[i]);
     $castContainer.appendChild(castCard);
   }
@@ -131,6 +132,7 @@ function createCastCard(castData) {
   //카드에 들어갈 요소들 정의
   const profile = document.createElement("img");
   profile.setAttribute("src", `https://image.tmdb.org/t/p/original${castData.profile_path}`);
+  profile.setAttribute("onerror", "this.onerror=null; this.src='../assets/img/noImg.jpg'");
 
   const name = document.createElement("p");
   name.textContent = castData.original_name;
@@ -141,4 +143,9 @@ function createCastCard(castData) {
   castCard.appendChild(name);
 
   return castCard;
+}
+//현재 상세페이지의 영화 제목을 tab title에도 띄워주는 함수
+function changeTitle(data) {
+  const pageTitle = document.querySelector("title");
+  pageTitle.innerText = `5flix - ${data.title}`;
 }
