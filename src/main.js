@@ -1,6 +1,8 @@
 import apiMovieData from "./tmdb.js";
+import { getMovieFromTmdb } from "./api.js";
 
 const movieData = await apiMovieData;
+
 const popularMovieData = {
   default: movieData.popular,
   rating: [...movieData.popular].sort((a, b) => {
@@ -12,7 +14,8 @@ const popularMovieInstance = {
   rating: []
 };
 
-const $cardArea = document.querySelector("#popular-movie");
+const $popularCardArea = document.querySelector("#movieList-popular");
+const $upcomingCardArea = document.querySelector("#movieList-upcoming");
 const $searchInput = document.querySelector("#search__input");
 const $searchBtn = document.querySelector("#search__btn");
 const $sortBtnArea = document.querySelector("#popular-sort");
@@ -26,77 +29,56 @@ class MovieCard {
     this.el = null;
   }
 
+  createCardLayout() {
+    const imgUrl = `https://image.tmdb.org/t/p/w500${this.poster_path}`;
+    const layout = `
+                    <div class="card card-active" data-id="${this.id}">
+                            <div class="card__face card__face-front">
+                                <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" 
+    onerror="this.onerror=null; this.src='../assets/img/noImg.jpg'" />
+                              <div class="card__info">
+                              <h3 class="card__title">${this.title}</h3>
+                              <p><b>평점</b> : ${this.vote_average.toFixed(1)}</p>
+                              </div>
+                            </div>
+                            <div class="card__face card__face-back" >
+                              <h4 class="card__title">${this.title}</h4>
+                              <p>${this.overview}</p>
+                            </div>
+                          </div>
+                    `;
+    return layout;
+  }
+
   createCard(parentEl) {
-    const layout = createCardLayout(this);
-    parentEl.insertAdjacentHTML("beforeend", layout);
+    parentEl.insertAdjacentHTML("beforeend", this.createCardLayout());
     this.el = parentEl.children[parentEl.children.length - 1];
+    // console.log(this.el);
   }
 
   addEvent() {
     this.el.addEventListener("click", () => {
-      alert(`제목 : ${this.title}\n원제 : ${this.original_title}\nID코드 : ${this.id}`);
+      // 클릭 시 페이지 이동
+      const detailLink = `./detail.html?id=${this.id}`;
+      return (location.href = detailLink);
     });
   }
-
-  checkInclude(val) {
-    const ko = this.title.includes(val);
-    const en = this.original_title.toLowerCase().includes(val.toLowerCase());
-    return ko || en;
-  }
-
-  toggleCard(boolean) {
-    const classList = this.el.classList;
-    boolean ? classList.add("card-active") : classList.remove("card-active");
-  }
 }
 
-// 카드 레이아웃을 생성하는 함수
-function createCardLayout(obj) {
-  const imgUrl = `https://image.tmdb.org/t/p/original${obj.poster_path}`;
-  const layout = `
-          <div class="card" data-id="${obj.id}">
-                  <div class="card__face card__face-front">
-                      <img src="${imgUrl}" alt="${obj.title} 포스터" class="card__img" />
-                    <div class="card__info">
-                    <h3 class="card__title">${obj.title}</h3>
-                    <p><b>평점</b> : ${obj.vote_average}</p>
-                    </div>
-                  </div>
-                  <div class="card__face card__face-back" >
-                    <h4 class="card__title">${obj.title}</h4>
-                    <p>${obj.overview}</p>
-                  </div>
-                </div>
-          `;
-  return layout;
-}
+const snapShotPopular = await getMovieFromTmdb({ type: "popular" });
+const snapShotUpcoming = await getMovieFromTmdb({ type: "upcoming" });
 
-// $sortMethod의 방법으로 생성된 모든 카드들에 "card-active" 를 토글하는 함수
-function toggleCardAll(boolean) {
-  popularMovieInstance[$sortMethod].forEach((n) => {
-    n.toggleCard(boolean);
-  });
-}
+snapShotPopular.forEach((n) => {
+  const card = new MovieCard(n);
+  card.createCard($popularCardArea);
+  card.addEvent();
+});
 
-// $sortMethod의 방법으로 생성된 모든 카드들 중 조건에 맞는 카드에
-// "card-active" 를 토글하는 함수
-const searchCard = function () {
-  popularMovieInstance[$sortMethod].forEach((i) => {
-    const check = i.checkInclude($searchInput.value);
-    i.toggleCard(check);
-  });
-};
-
-for (let prop in popularMovieData) {
-  popularMovieData[prop].forEach((n) => {
-    const card = new MovieCard(n);
-    card.createCard($cardArea);
-    card.addEvent();
-    popularMovieInstance[prop].push(card);
-  });
-}
-
-toggleCardAll(true);
+snapShotUpcoming.forEach((n) => {
+  const card = new MovieCard(n);
+  card.createCard($upcomingCardArea);
+  card.addEvent();
+});
 
 //==================== EVENT ====================
 // 로딩 시 검색창으로 포커스 해주는 이벤트
@@ -113,13 +95,6 @@ $searchBtn.addEventListener("click", () => {
 window.addEventListener("keyup", (e) => {
   if ($searchInput != false && e.key === "Enter") {
     searchCard();
-  }
-});
-
-// 검색창 내용을 다 삭제했을 때 모든 카드가 보이게 하는 이벤트
-$searchInput.addEventListener("input", (e) => {
-  if (e.target.value === "") {
-    toggleCardAll(true);
   }
 });
 

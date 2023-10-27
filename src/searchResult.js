@@ -58,11 +58,11 @@ class MovieCard {
     const layout = `
                     <div class="card card-active" data-id="${this.id}">
                             <div class="card__face card__face-front">
-                                <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" />
+                                <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" 
+                                onerror="this.onerror=null; this.src='../assets/img/noImg.jpg'"/>
                               <div class="card__info">
                               <h3 class="card__title">${this.title}</h3>
-                              <h3 class="card__title">${this.title}</h3>
-                              <p><b>평점</b> : ${this.vote_average.toFixed(2)}</p>
+                              <p><b>평점</b> : ${this.vote_average.toFixed(1)}</p>
                               </div>
                             </div>
                             <div class="card__face card__face-back" >
@@ -85,7 +85,6 @@ class MovieCard {
       // 클릭 시 페이지 이동
       const detailLink = `./detail.html?id=${this.id}`;
       return (location.href = detailLink);
-      //   alert(`ID코드 : ${this.id}`);
     });
   }
 }
@@ -95,8 +94,9 @@ async function getData() {
   const data = await getMovieFromKofic(queryString, currentPage);
   currentPage = data.nextPage;
   data.movieList.forEach((n, i) => {
-    const [title, year] = [n.movieNm, n.openDt.slice(0, 4)];
-    getMovieFromTmdb(title, year).then((res) => {
+    let obj = { type: "search", title: n.movieNm, year: n.openDt.slice(0, 4) };
+    getMovieFromTmdb(obj).then((res) => {
+      console.log(res);
       if (res.length !== 0) {
         res.forEach((item2) => {
           const card = new MovieCard(item2);
