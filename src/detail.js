@@ -147,5 +147,5 @@ function createCastCard(castData) {
 //현재 상세페이지의 영화 제목을 tab title에도 띄워주는 함수
 function changeTitle(data) {
   const pageTitle = document.querySelector("title");
-  pageTitle.innerText = `5flix - ${data.title}`;
+  pageTitle.innerText = `5Flix - ${data.title}`;
 }
