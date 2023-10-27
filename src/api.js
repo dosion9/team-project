@@ -35,8 +35,35 @@ async function getMovieFromKofic(searchStr, pageNum = 1) {
   }
 }
 
-async function getMovieFromTmdb(title, year) {
-  const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR`;
+function tmdbURL(obj) {
+  // {obj.type, obj.title, obj.year, obj.movieId};
+  const url = {
+    baseURL: "https://api.themoviedb.org/3",
+    upcoming: "/movie/upcoming?language=ko-KR&page=1&region=KR",
+    popular: "/movie/popular?language=ko-KR&page=1&region=KR",
+    search: `/search/movie?query=${obj.title}&include_adult=false&primary_release_year=${obj.year}&language=ko-KR&page=1&region=KR`,
+    details: `/${obj.movieId}?append_to_response=credits&language=ko-KR`
+  };
+
+  switch (obj.type) {
+    case "upcoming":
+      return url.baseURL + url.upcoming;
+    case "popular":
+      return url.baseURL + url.popular;
+    case "search":
+      return url.baseURL + url.search;
+    case "details":
+      return url.baseURL + url.details;
+    default:
+      console.log("URL 타입을 미지정");
+      break;
+  }
+}
+
+async function getMovieFromTmdb(obj) {
+  // {obj.type, obj.title, obj.year, obj.movieId};
+  // const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR`;
+  const url = tmdbURL(obj);
   try {
     const response = await fetch(url, tmdbOptions);
     const data = await response.json();
