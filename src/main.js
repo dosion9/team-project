@@ -34,7 +34,8 @@ class MovieCard {
     const layout = `
                     <div class="card card-active" data-id="${this.id}">
                             <div class="card__face card__face-front">
-                                <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" />
+                                <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" 
+    onerror="this.onerror=null; this.src='../assets/img/noImg.jpg'" />
                               <div class="card__info">
                               <h3 class="card__title">${this.title}</h3>
                               <p><b>평점</b> : ${this.vote_average.toFixed(1)}</p>
