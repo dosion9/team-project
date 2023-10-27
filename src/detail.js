@@ -1,5 +1,7 @@
 // 영화의 상세정보를 가지고 여러가지 하는 파일
 
+import { getMovieFromTmdb } from "./api.js";
+
 const $dataContainer = document.querySelector(".container__detail");
 const $castContainer = document.querySelector(".container__cast");
 
@@ -21,7 +23,9 @@ const options = {
 
 async function initialize() {
   try {
-    let movieData = await getData(url);
+    // let movieData = await getData(url);
+    let obj = { type: "details", movieId: receivedMovieId };
+    let movieData = await getMovieFromTmdb(obj);
     console.log(movieData);
     renderCard(movieData);
   } catch (error) {
