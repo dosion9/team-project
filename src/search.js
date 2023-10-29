@@ -66,7 +66,6 @@ function filtering1(input) {
 function filtering2(filter, input) {
     console.log(input)
     
-    console.log(filter.test(input))
-    console.log(typeof(filter.test(input))) // ....?
-    return filter.test(input)
+    console.log(input.search(filter))
+    return input.search(filter) != -1?true:false
 }
