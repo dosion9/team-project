@@ -29,12 +29,12 @@ class MovieCard {
   createCardLayout() {
     const imgUrl = Boolean(this.poster_path)
       ? `https://image.tmdb.org/t/p/w500${this.poster_path}`
-      : "../assets/img/noImg.jpg";
+      : "./assets/img/noImg.jpg";
     const layout = `
                     <div class="card " data-id="${this.id}">
                             <div class="card__face card__face-front">
                                 <img src="${imgUrl}" alt="${this.title} 포스터" class="card__img" 
-    onerror="this.onerror=null; this.src='../assets/img/noImg.jpg'" />
+    onerror="this.onerror=null; this.src='./assets/img/noImg.jpg'" />
                               <div class="card__info">
                               <h3 class="card__title">${this.title}</h3>
                               <div class="stars-outer">

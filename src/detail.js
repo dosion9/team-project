@@ -36,10 +36,10 @@ function createMovieDetail(movieData) {
 
   const imgSrc = Boolean(movieData.poster_path)
     ? `https://image.tmdb.org/t/p/w300${movieData.poster_path}`
-    : "../assets/img/noImg.jpg";
+    : "./assets/img/noImg.jpg";
   //카드에 들어갈 요소들 정의
   const poster = createAndAppend("img", "detail__poster", "src", imgSrc);
-  poster.setAttribute("onerror", "this.onerror=null; this.src='../assets/img/noImg.jpg'");
+  poster.setAttribute("onerror", "this.onerror=null; this.src='./assets/img/noImg.jpg'");
   const title = createAndAppend("h3", "detail__title", "textContent", movieData.title);
   const overview = createAndAppend("p", "detail__overview", "textContent", movieData.overview);
   const genres = createAndAppend("p", "detail__genres", "textContent", `장르 : ${movieGenre}`);
@@ -107,9 +107,9 @@ function createCastCard(castData) {
   //카드에 들어갈 요소들 정의
   const imgSrc = Boolean(castData.profile_path)
     ? `https://image.tmdb.org/t/p/original${castData.profile_path}`
-    : "../assets/img/noImg.jpg";
+    : "./assets/img/noImg.jpg";
   const profile = createAndAppend("img", null, "src", imgSrc);
-  profile.setAttribute("onerror", "this.onerror=null; this.src='../assets/img/noImg.jpg'");
+  profile.setAttribute("onerror", "this.onerror=null; this.src='./assets/img/noImg.jpg'");
   const name = createAndAppend("p", "cast_name", "textContent", castData.original_name);
 
   //위에서 정의한 요소들 카드에 추가
