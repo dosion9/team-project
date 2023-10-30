@@ -30,7 +30,9 @@ class MovieCard {
                                 onerror="this.onerror=null; this.src='../assets/img/noImg.jpg'"/>
                               <div class="card__info">
                               <h3 class="card__title">${this.title}</h3>
-                              <p><b>평점</b> : ${this.vote_average.toFixed(1)}</p>
+                              <div class="stars-outer">
+                              <div class="stars-inner"></div>
+                            </div> (${this.vote_average.toFixed(1)})
                               </div>
                             </div>
                             <div class="card__face card__face-back" >
@@ -45,6 +47,7 @@ class MovieCard {
   createCard(parentEl) {
     parentEl.insertAdjacentHTML("beforeend", this.createCardLayout());
     this.el = parentEl.children[parentEl.children.length - 1];
+    this.renderStar();
   }
 
   addEvent() {
@@ -52,6 +55,15 @@ class MovieCard {
       const detailLink = `./detail.html?id=${this.id}`;
       return (location.href = detailLink);
     });
+  }
+  renderStar() {
+    const ratings = this.vote_average.toFixed(1) / 2;
+    // total number of stars
+    const starTotal = 5;
+
+    const starPercentage = (ratings / starTotal) * 100;
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    this.el.querySelector(`.stars-inner`).style.width = starPercentageRounded;
   }
 }
 
