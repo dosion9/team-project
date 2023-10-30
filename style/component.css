@@ -155,6 +155,7 @@
   height: 100%;
   padding: var(--spacing-lg);
   transform: rotateY(-180deg);
+  line-height: 150%;
 }
 
 .card__img {
