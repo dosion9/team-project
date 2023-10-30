@@ -1,2 +1,38 @@
-# team-project
-[내일배움캠프][팀 프로젝트]
+# [내일배움캠프][팀 프로젝트] - 5Flix
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="277" height="38" viewBox="0 0 277 38">
+  <image id="Logo-row" width="277" height="38" xlink:href="data:img/png;base64,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"/>
+</svg>
+
+## 프로젝트 소개
+
+TMDB와 영진위의 API를 이용하여 영화 리뷰 프로젝트
+
+## 개발 기간
+
+- 23.10.24 - 23.10.30
+
+## 맴버구성
+
+- [이희원](https://github.com/im2hw)
+- [도경구](https://github.com/dosion9)
+- [안은지](https://github.com/ahneun)
+- [김래준](https://github.com/Laejun-Kim)
+
+## 개발 환경
+
+- `JavaScript`
+- `CSS`
+- `HTML`
+
+## 주요 기능
+
+- 최신영화 및 개봉 예정작 확인
+
+- 영화 검색
+
+- 영화의 상세 정보(배우정보 등) 확인 가능
+
+- 영화 comment 작성 기능
+
+- 검색어 및 comment 비속어 필터링
