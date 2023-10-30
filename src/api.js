@@ -62,9 +62,8 @@ function tmdbURL(obj) {
 
 async function getMovieFromTmdb(obj) {
   // {obj.type, obj.title, obj.year, obj.movieId};
-  // const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR`;
 
-  const url = tmdbURL(obj);
+  const url = tmdbURL(obj); //https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&primary_release_year=${year}&language=ko-KR&page=1&region=KR
   try {
     const response = await fetch(url, tmdbOptions);
     const data = await response.json();

@@ -2,7 +2,6 @@
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
-  /* color: transparent; */
 }
 
 .stars-outer::before {

@@ -1,12 +1,5 @@
 import { getMovieFromTmdb } from "./api.js";
 
-// seacrh.js 로 이동
-const $searchInput = document.querySelector("#search__input");
-// 로딩 시 검색창으로 포커스 해주는 이벤트
-onload = () => {
-  $searchInput.focus();
-};
-
 // ==================== DOM ====================
 const $popularCardArea = document.querySelector("#movieList-popular");
 const $upcomingCardArea = document.querySelector("#movieList-upcoming");

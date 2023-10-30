@@ -3,7 +3,6 @@ import { getMovieFromKofic, getMovieFromTmdb } from "./api.js";
 let currentPage = 1;
 let totalMovieCount = null;
 let fetchCheck = true;
-const movieTitleMap = new Map(); // KOFIC에서 가져온 영화 제목들 저장
 const movieCardData = new Map(); // TMDB에서 가져온 영화 정보들 (제목에 검색어가 포함되어있는지 확인 후 set)
 const queryString = new URLSearchParams(window.location.search).get("search");
 const $cardArea = document.querySelector("#movieList-search");
@@ -92,11 +91,6 @@ function filterMovies(obj, str) {
   return !eroticGenre && (titleCheckKo || titleCheckOrigin);
 }
 
-// ================= NEW =============================
-// 검색어가 영어일 때와 한글일 때를 구분하자
-// 검색어가 한글일 때 => 바로 TMDB
-// 검색어가 영어일 때 => 영화진흥위 => TMDB
-
 function checkMoreFetch() {
   if (totalMovieCount === null) {
     return (fetchCheck = true);
@@ -108,7 +102,7 @@ function checkMoreFetch() {
   }
 }
 
-// 영어일떄
+// 영화진흥위 데이터 가져오는 함수
 async function koficSearch() {
   const data = await getMovieFromKofic(queryString, currentPage);
   const result = data.movieList.filter((n) => {
@@ -121,7 +115,7 @@ async function koficSearch() {
   return result;
 }
 
-// 한글일떄 (완성)
+// TMDB 데이터 가져오는 함수
 async function tmdbSearch(str = queryString, year = null) {
   const queryTmdb = { type: "search", title: str, year: year };
   const result = await getMovieFromTmdb(queryTmdb);
@@ -132,21 +126,23 @@ async function tmdbSearch(str = queryString, year = null) {
   return filteredData;
 }
 
+// 검색창에 입력된 언어가 한글이면 TMDB에 요청
+// 검색창에 입력된 언어가 영어면 영화진흥위원회 데이터를 받은 후 해당 데이터의 한글 제목으로 TMDB에 요청
 async function movieSearch() {
   const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
   const hasKorean = koreanRegex.test(queryString);
 
   if (hasKorean) {
-    //한글일때
+    //검색어가 한글일때 TMDB 요청
     let movieData = await tmdbSearch();
     createCards(movieData);
   } else {
-    //영어일때
+    //검색어가 영어일 때 영화진흥위원회 요청
     const koficMovie = await koficSearch();
     const movieTitleMap = new Map();
     koficMovie.forEach((n) => {
       if (n.movieNm.includes(":")) {
-        movieTitleMap.set(n.movieNm.slice(0, n.movieNm.indexOf(":")).trim());
+        movieTitleMap.set(n.movieNm.slice(0, n.movieNm.indexOf(":")).trim()); //시리즈의 경우 시리즈명으로만 검색하게 함
       } else {
         movieTitleMap.set(n.movieNm);
       }
@@ -163,7 +159,7 @@ async function movieSearch() {
 
 movieSearch();
 
-// 무한 스크롤
+// 무한 스크롤 이벤트
 let timer;
 
 window.addEventListener("scroll", () => {

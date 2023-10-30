@@ -1,4 +1,4 @@
-// 영화의 상세정보를 가지고 여러가지 하는 파일
+// 영화의 상세정보 UI를 생성하는 파일
 
 import { getMovieFromTmdb } from "./api.js";
 
@@ -14,10 +14,8 @@ async function initialize() {
   try {
     let obj = { type: "details", movieId: receivedMovieId };
     let movieData = await getMovieFromTmdb(obj);
-    console.log(movieData);
     renderCard(movieData);
   } catch (error) {
-    console.log("뭔가 망했어요! 당신을 홈으로 강제송환 합니다");
     window.location.href = "./";
   }
 }
