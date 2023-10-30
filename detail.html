@@ -15,12 +15,6 @@
         <a href="./" class="nav__item">
           <img src="./assets/svg/logo.svg" alt="Doflix" class="logo" />
         </a>
-        <!-- 임시 Nav -->
-        <ul class="row">
-          <li><a href="./detail.html">Detail</a></li>
-          <li><a href="./detail.html">Search</a></li>
-        </ul>
-        <!-- 임시 Nav -->
       </nav>
     </header>
     <main>
@@ -54,8 +48,23 @@
           <p class="comment-number">(0)</p>
         </div>
         <form class="comment-form">
-          <input type="text" id="username" class="name-area" name="username" value="" placeholder="닉네임" autocomplete="off"/>
-          <input type="password" id="password" class="password-area" placeholder="비밀번호" maxlength="6" autocomplete="off" />
+          <input
+            type="text"
+            id="username"
+            class="name-area"
+            name="username"
+            value=""
+            placeholder="닉네임"
+            autocomplete="off"
+          />
+          <input
+            type="password"
+            id="password"
+            class="password-area"
+            placeholder="비밀번호"
+            maxlength="6"
+            autocomplete="off"
+          />
           <input
             type="text"
             id="comment"
@@ -64,7 +73,7 @@
             value=""
             placeholder="한줄평을 등록해주세요."
             autocomplete="off"
-            />
+          />
           <button id="submitBtn" class="submit-btn-red">등록</button>
         </form>
         <div class="comment-box">
@@ -92,5 +101,6 @@
     <!-- 스크립트 추가하는 공간 모듈형식으로 해주세요! -->
     <script type="module" src="./src/detail.js"></script>
     <script type="module" src="./src/comment.js"></script>
+    <script type="module" src="./src/search.js"></script>
   </body>
 </html>
