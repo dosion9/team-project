@@ -94,13 +94,15 @@ h3 {
   border-radius: 4px;
   
 } 
+.submit-btn-red:hover{
+  background-color: var(--color-dark);
+  cursor: pointer;
+}
 
 /* 댓글 생성되는 부분 */
 .comment-box {
   max-width: 1200px;
   width: 100%;
-  
-  padding: 5px;
   margin: 10px 4px 0 4px;
   border-radius: 4px;
 }
@@ -141,22 +143,26 @@ h3 {
 }
 
 .right-div{
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .delete-btn{
   border: none;
-  background-color: #333;
+  background-color: #222;
   color: white;
   height: 25px;
   width: 55px;
+  padding: 0;
+  border-radius: 4px 0 0 4px;
 }
 .delete-pwd{
   border: none;
-  border-left: #ccc solid 1px;
   background-color: #333;
   color: white;
   height: 25px;
-  width: 75px;
+  width: 70px;
+  padding:  0;
   padding-left: 4px;
-
+  border-radius: 0 4px 4px  0;
 }
