@@ -16,7 +16,7 @@ let savedPassword = ""; // 저장된 비밀번호
 // 로컬 스토리지에서 해당 영화의 댓글을 가져와 화면에 출력하는 함수
 const displayComments = function (movieId) {
   const comments = JSON.parse(localStorage.getItem(movieId));
-  $commentNum.textContent = `(${comments.length})`;
+  $commentNum.textContent = Boolean(comments?.length) ? `(${comments?.length})` : "(0)";
 
   if (comments && comments.length > 0) {
     $printComment.innerHTML = ""; //댓글 목록 초기화

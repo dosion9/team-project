@@ -27,7 +27,9 @@ class MovieCard {
     this.el = null;
   }
   createCardLayout() {
-    const imgUrl = `https://image.tmdb.org/t/p/w500${this.poster_path}`;
+    const imgUrl = Boolean(this.poster_path)
+      ? `https://image.tmdb.org/t/p/w500${this.poster_path}`
+      : "../assets/img/noImg.jpg";
     const layout = `
                     <div class="card " data-id="${this.id}">
                             <div class="card__face card__face-front">
