@@ -1,5 +1,5 @@
 const koficApi = {
-  baseUrl: "http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json",
+  baseUrl: "https://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json",
   params: {
     key: "d268510436f3bd7a4d224f272399d612",
     // openStartDt: 1990, // YYYY형식의 조회시작 개봉연도
